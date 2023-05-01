@@ -11,6 +11,7 @@ const books = [
   { id: 4, title: 'One Hundred Years of Solitude', author: 'Gabriel Garcia Marquez', pageCount: 417, country: 'Colombia' },
   { id: 5, title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', pageCount: 180, country: 'United States' },
   { id: 6, title: 'Astoņi Kustiņi', author: 'I. Ziedonis', pageCount: 180, country: 'Latvia' },
+  { id: 7, title: 'Oņi Kustiņi', author: 'I. Ziedeonis', pageCount: 1820, country: 'Latviea' },
 ];
 
 // Endpoint to get list of dummy books
