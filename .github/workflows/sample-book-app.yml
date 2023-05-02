@@ -21,9 +21,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/deploy
-       with:
-        port: 1010
-        environment: 'DEV'
+        with:
+          port: 1010
+          environment: 'DEV'
 
   test-dev:
     runs-on: self-hosted
@@ -31,8 +31,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/test
-       with:
-        environment: 'DEV'
+        with:
+          environment: 'DEV'
 
   deploy-stg:
     runs-on: self-hosted
@@ -40,9 +40,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/deploy
-       with:
-        port: 2020
-        environment: 'STG'
+        with:
+          port: 2020
+          environment: 'STG'
 
   test-stg:
     runs-on: self-hosted
@@ -50,8 +50,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/test
-       with:
-        environment: 'STG'
+        with:
+          environment: 'STG'
 
   deploy-prd:
     runs-on: self-hosted
@@ -59,18 +59,18 @@ jobs:
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/deploy
-       with:
-        port: 3030
-        environment: 'PRD'
-  
+        with:
+          port: 3030
+          environment: 'PRD'
+
   test-prd:
     runs-on: self-hosted
     needs: [deploy-prd]
     steps:
       - uses: actions/checkout@v3.5.2
       - uses: ./.github/actions/test
-       with:
-        environment: 'PRD'
+        with:
+          environment: 'PRD'
 
 
 
