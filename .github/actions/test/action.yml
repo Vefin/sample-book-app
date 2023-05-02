@@ -10,7 +10,10 @@ runs:
   steps:
     - name: Print output
       run: Testing ${{ inputs.test_set }} test set on ${{ inputs.environment }} has started..
+      shell: cmd
     - name: Install dependencies
       run: npm install
+      shell: cmd
     - name: Execute REST API integration tests
       run: npm run ${{ inputs.test_set }} ${{ inputs.test_set }}_${{ inputs.environment }}
+      shell: cmd

@@ -10,19 +10,13 @@ runs:
   steps:
     - name: Print output
       run: echo Deployment to ${{ inputs.environment }} has started..
+      shell: cmd
     - name: Install dependencies
       run: npm install
+      shell: cmd
     - name: Delete service
       run: pm2 delete "books-${{ inputs.environment }}"
+      shell: cmd
     - name: Start service
       run: pm2 start -n "books-${{ inputs.environment }}" index.js -- books-${{ inputs.port }}"
-
-
-
-def deploy(String environment, int port){
-    echo "Deployment to ${environment} has started.."
-    git branch: 'main', poll: true, url: 'https://github.com/Vefin/sample-book-app.git'
-    bat "npm install"
-    bat "pm2 delete \"books-${environment}\""
-    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
-}
+      shell: cmd
