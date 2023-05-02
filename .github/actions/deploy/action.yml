@@ -1,0 +1,28 @@
+inputs:
+  port:
+    description: 'Specific port for node application to run'
+    default: 1010
+  environment:
+    description: 'Environment for node application to run'
+    default: 'DEV'
+runs:
+  using: "composite"
+  steps:
+    - name: Print output
+      run: echo Deployment to ${{ inputs.environment }} has started..
+    - name: Install dependencies
+      run: npm install
+    - name: Delete service
+      run: pm2 delete "books-${{ inputs.environment }}"
+    - name: Start service
+      run: pm2 start -n "books-${{ inputs.environment }}" index.js -- books-${{ inputs.port }}"
+
+
+
+def deploy(String environment, int port){
+    echo "Deployment to ${environment} has started.."
+    git branch: 'main', poll: true, url: 'https://github.com/Vefin/sample-book-app.git'
+    bat "npm install"
+    bat "pm2 delete \"books-${environment}\""
+    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
+}
