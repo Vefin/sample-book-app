@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers{ pollSCM('*/1 * * * *') }
-
+    
 
     stages {
         stage('Build') {
@@ -21,8 +21,7 @@ pipeline {
         stage('Tests on DEV') {
             steps {
                 script{
-                   // test("BOOKS", "DEV")
-                    test("DEV")
+                    test("BOOKS", "DEV")
                 }
             }
         }
@@ -36,8 +35,7 @@ pipeline {
         stage('Tests on STG') {
             steps {
                 script{
-                   // test("BOOKS", "STG")
-                    test("STG")
+                    test("BOOKS", "STG")
                 }
             }
         }
@@ -51,8 +49,7 @@ pipeline {
         stage('Tests on PRD') {
             steps {
                 script{
-                   // test("BOOKS", "PRD")
-                    test("PRD")
+                    test("BOOKS", "PRD")
                 }
             }
         }
@@ -64,21 +61,20 @@ pipeline {
 
 def build(){
     echo "Building of node application is starting.."
-    bat "dir"
-    bat "npm install"
-    //bat "npm test"
+    sh "ls"
+    sh "npm install"
+    sh "npm test"
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
-    bat "pm2 delete \"books-${environment}\""
-    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
+    sh "pm2 delete \"books-${environment}\""
+    sh "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def test(String test_set, String environment){
-    echo "Testing to ${environment} has started.."
-   // bat "npm run books ${test_set}_${environment}"
-
+    echo "Testing ${test_set} test set on ${environment} has started.."
+    sh "npm run ${test_set} ${test_set}_${environment}"
 }
 
 
