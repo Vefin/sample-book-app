@@ -61,20 +61,20 @@ pipeline {
 
 def build(){
     echo "Building of node application is starting.."
-    sh "ls"
-    sh "npm install"
-    sh "npm test"
+    bat "dir"
+    bat "npm install"
+    //bat "npm test"
 }
 
 def deploy(String environment, int port){
     echo "Deployment to ${environment} has started.."
-    sh "pm2 delete \"books-${environment}\""
-    sh "pm2 start -n \"books-${environment}\" index.js -- ${port}"
+    //bat "pm2 delete \"books-${environment}\""
+    bat "pm2 start -n \"books-${environment}\" index.js -- ${port}"
 }
 
 def test(String test_set, String environment){
     echo "Testing ${test_set} test set on ${environment} has started.."
-    sh "npm run ${test_set} ${test_set}_${environment}"
+    bat "npm run ${test_set} ${test_set}_${environment}"
 }
 
 
