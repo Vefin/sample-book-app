@@ -9,8 +9,10 @@ runs:
   using: "composite"
   steps:
     - name: Execute REST API integration tests
+      working-directory: api-tests
       run: |
         echo Testing ${{ inputs.test_set }} test set on ${{ inputs.environment }} has started..
+        dir
         npm install
         pm run ${{ inputs.test_set }} ${{ inputs.test_set }}_${{ inputs.environment }}
       shell: cmd
